@@ -1,0 +1,23 @@
+{
+  "name": "e-dashbaord",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhanu9672/e-dashbaord.git"
+  },
+  "author": "Bhanu Pratap Singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bhanu9672/e-dashbaord/issues"
+  },
+  "homepage": "https://github.com/bhanu9672/e-dashbaord#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.5.3"
+  }
+}
