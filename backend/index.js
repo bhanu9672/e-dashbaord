@@ -1,10 +1,17 @@
 const express = require( "express" );
+const cors = require( "cors" );
+
+require( "./db/config" );
+const User = require( "./db/User" );
 const app = express();
 
-app.get( "/", ( req, resp ) => {
+app.use( express.json() );
+app.use( cors() );
 
-    resp.send( "app is working..." );
-
-} );
+app.post( "/register", async ( req, resp ) => {
+    let user = new User( req.body );
+    let result = await user.save();
+    resp.send( result + "Api In Progress" );
+});
 
 app.listen( 5000 );
