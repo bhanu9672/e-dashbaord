@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
 
@@ -6,12 +7,29 @@ const SignUp = () => {
     const [ email, setEmail ] = useState( "" );
     const [ password, setPasswird ] = useState( "" );
 
-    const collectData = () => {
-        console.log( "Btn Click Now." );
-        console.log( "This is Console Log Data Show" + name, email, password );
-        console.warn( name, email, password );
-    }
+    const navigate = useNavigate();
+    useEffect(() => {
+        const auth = localStorage.getItem( "user" );
+        if( auth ) {
+            navigate( "/" );
+        }
+    },[]);
 
+    const collectData = async () => {
+        console.log( "Btn Click Now." );
+        console.warn( name, email, password );
+        let result = await fetch( "http://localhost:5000/register", {
+            method : 'post',
+            body : JSON.stringify({ name, email, password }),
+            headers : {
+                'Content-Type' : 'application/json'
+            }
+        });
+        result = await result.json();
+        //console.warn( "Api Data" + result );
+        localStorage.setItem( "user", JSON.stringify( result ) );
+        navigate( "/" );
+    }
 
     return (
         <>
