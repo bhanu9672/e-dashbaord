@@ -1,5 +1,11 @@
-.nav-ul {
+/* .nav-ul {
   padding: 5px;
+  margin: 0px;
+  background-color: skyblue;
+} */
+
+.nav-section {
+  padding: 20px 0px;
   margin: 0px;
   background-color: skyblue;
 }
@@ -16,7 +22,6 @@
   padding: 5px;
 }
 
-
 .footer {
   user-select: auto;
   position: absolute;
@@ -28,6 +33,11 @@
 
 .register {
   margin-left: 30%;
+}
+
+.login {
+  margin-left: 35%;
+  margin-top: 100px;
 }
 
 input.inputBox {
@@ -47,37 +57,15 @@ button.appButton {
   cursor: pointer;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.nav-right {
+  text-align: right;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 520%;
+  float: left;
+  /* margin-top: 3px; */
+  margin-left: 18px;
 }
