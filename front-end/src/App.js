@@ -5,6 +5,9 @@ import Footer from './Components/Footer';
 import { BrowserRouter, Routes, Route,  } from "react-router-dom";
 import PrivateComponent from './Components/PrivateComponent';
 import Login from './Components/Login';
+import AddProduct from './Components/AddProduct';
+import ProductLists from "./Components/ProductLists";
+import UpdateProduct from './Components/UpdateProduct';
 
 function App() {
   return (
@@ -13,9 +16,9 @@ function App() {
         <Nav />
         <Routes>
           <Route element={ <PrivateComponent /> } >
-          <Route path='/' element={ <h1> Product Component </h1> } />
-          <Route path='/add' element={ <h1> Add Component </h1> } />
-          <Route path='/update' element={ <h1> Update Component </h1> } />
+          <Route path='/' element={ <ProductLists /> } />
+          <Route path='/add' element={ <AddProduct /> } />
+          <Route path='/update/:id' element={ <UpdateProduct /> } />
           <Route path='/LogOut' element={ <h1> LogOur Component </h1> } />
           <Route path='/Profile' element={ <h1> Profile Component </h1> } />
           </Route>

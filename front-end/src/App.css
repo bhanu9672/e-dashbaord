@@ -31,7 +31,8 @@
   text-align: center;
 }
 
-.register {
+.register,
+.product {
   margin-left: 30%;
 }
 
@@ -68,4 +69,39 @@ button.appButton {
   float: left;
   /* margin-top: 3px; */
   margin-left: 18px;
+}
+
+.invalid-input {
+  display: block;
+  color: red;
+  margin-top: -20px;
+  margin-left: 20px;
+}
+
+.products-list {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.products-list ul li {
+  display: inline-block;
+  width: 150px;
+  border: 1px solid skyblue;
+  padding: 5px;
+}
+
+.products-list ul {
+  margin: 0;
+}
+
+.search-product-box {
+  width: 400px;
+  margin: 20px;
+  height: 38px;
+  padding-left: 30px;
+  border: 1px solid skyblue;
+}
+
+.no-product-found {
+  color: red;
 }
