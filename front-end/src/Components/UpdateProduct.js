@@ -23,7 +23,6 @@ const UpdateProduct = () => {
         setCompany( result.company );
     }
 
-
     const UpdateProductFun = async () => {
         let result = await fetch( `http://localhost:5000/product/${params.id}`, {
             method: "Put",
@@ -35,8 +34,7 @@ const UpdateProduct = () => {
         result = await result.json();
         if( result ) {
             navigate( "/" );
-        }
-        
+        } 
     }
 
     return(

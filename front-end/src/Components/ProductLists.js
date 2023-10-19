@@ -20,16 +20,13 @@ const ProductLists = () => {
         });
         result = await result.json();
         if( result ) {
-            //alert( "Product Deleted" );
-            //console.log( "Product Deleted" );
             getProducts();
         }
     }
 
-    const searchHandle = async (event) => {
-        console.warn( event.target.value );
-        let key = event.target.value;
-
+    const searchHandle = async (e) => {
+        console.warn( e.target.value );
+        let key = e.target.value;
         if( key ) {
             let result = await fetch( `http://localhost:5000/search/${key}` );
             result = await result.json();
@@ -39,9 +36,7 @@ const ProductLists = () => {
         } else {
             getProducts();
         }
-
     }
-
 
     return (
         <div className="products-list">
