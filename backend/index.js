@@ -20,21 +20,16 @@ app.post("/register", async (req, resp) => {
 
 // LogIN Api
 app.post("/login", async (req, resp) => {
-
     if (req.body.password && req.body.email) {
-
         let user = await User.findOne(req.body).select("-password");
-
         if (user) {
             resp.send(user);
         } else {
             resp.send({ result: "No User Found" });
         }
-
     } else {
         resp.send({ result: "No User Found" });
     }
-
 });
 
 // Add Produt Api
@@ -63,13 +58,11 @@ app.delete("/product/:id", async (req, resp) => {
 // Get Single Product Api
 app.get("/product/:id", async (res, resp) => {
     let result = await Product.findOne({ _id: res.params.id });
-
     if (result) {
         resp.send(result);
     } else {
         resp.send({ "Result": "No Record Found." })
     }
-
 });
 
 // Update Product Api
@@ -78,9 +71,7 @@ app.put("/product/:id", async (req, resp) => {
         { id: req.params.id },
         { $set: req.body }
     )
-
     resp.send(result);
-
 });
 
 // Api For Search Product
