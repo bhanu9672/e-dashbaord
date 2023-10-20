@@ -19,7 +19,6 @@ const Nav = () => {
                     <ul className="nav-ul">
                         <li> <Link to="/"> Products </Link> </li>
                         <li> <Link to="/add"> Add Products </Link> </li>
-                        <li> <Link to="/update"> Update Products </Link> </li>
                         <li> <Link to="/Profile"> Profile </Link> </li>
                         <li><Link to="/signup" onClick={LogOut}> LogOut ( {JSON.parse(auth).name} ) </Link></li>
                     </ul>

@@ -1,8 +1,6 @@
-/* .nav-ul {
-  padding: 5px;
-  margin: 0px;
-  background-color: skyblue;
-} */
+.nav-ul {
+  text-align: end;
+}
 
 .nav-section {
   padding: 20px 0px;
