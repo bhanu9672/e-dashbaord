@@ -1,5 +1,8 @@
 const express = require("express");
 const cors = require("cors");
+const multer = require("multer")
+var fs = require('fs');
+var path = require('path');
 
 require("./db/config");
 const User = require("./db/User");
@@ -32,12 +35,79 @@ app.post("/login", async (req, resp) => {
     }
 });
 
-// Add Produt Api
-app.post("/add-product", async (req, resp) => {
-    let product = new Product(req.body);
-    let result = await product.save();
-    resp.send(result);
+
+
+
+
+
+
+ 
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now())
+    }
 });
+var upload = multer({ storage: storage });
+
+
+app.post("/upload/image", upload.single("image"), (req, res) => {
+    var obj = {
+        name: req.body.name,
+        //desc: req.body.desc,
+        img: {
+            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+            contentType: 'image/png'
+        }
+    }
+    Product.create(obj)
+    const file = req.file
+    // Respond with the file details
+    res.send({
+        message: "Uploaded",
+        id: file.id,
+        name: file.filename,
+        contentType: file.contentType,
+    })
+})
+
+
+
+// Add Produt Api
+app.post("/add-product", upload.single("image"), async (req, resp) => {
+    var obj = {
+        name: req.body.name,
+        price: req.body.price,
+        category: req.body.category,
+        userid: req.body.userid,
+        company: req.body.company,
+        desc: req.body.desc,
+        img: {
+            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+            contentType: 'image/png'
+        }
+    }
+    Product.create(obj)
+    const file = req.file
+    // Respond with the file details
+    resp.send({
+        message: "Uploaded",
+        id: file.id,
+        name: file.filename,
+        contentType: file.contentType,
+    })
+});
+
+
+
+// Add Produt Api
+//app.post("/add-product", async (req, resp) => {
+//    let product = new Product(req.body);
+//    let result = await product.save();
+//    resp.send(result);
+//});
 
 // Show All Products Api
 app.get("/products", async (res, resp) => {
@@ -92,4 +162,4 @@ app.get('/search/:key', async (req, resp) => {
     resp.send(result);
 });
 
-app.listen( 5000 );
+app.listen(5000);

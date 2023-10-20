@@ -13,7 +13,9 @@ const Nav = () => {
     }
     return (
         <div className="nav-section">
-            <img src={Logo} alt="Logo" className="logo" />
+            <Link to="/">
+                <img src={Logo} alt="Logo" className="logo" />
+            </Link>
             {
                 auth ?
                     <ul className="nav-ul">
