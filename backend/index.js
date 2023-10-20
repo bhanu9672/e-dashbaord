@@ -3,6 +3,7 @@ const cors = require("cors");
 const multer = require("multer")
 var fs = require('fs');
 var path = require('path');
+const bodyParser = require("body-parser")
 
 require("./db/config");
 const User = require("./db/User");
@@ -10,6 +11,7 @@ const Product = require("./db/Product");
 const app = express();
 
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // Register Or add New User Api
@@ -41,7 +43,7 @@ app.post("/login", async (req, resp) => {
 
 
 
- 
+
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads')
@@ -53,51 +55,61 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 
-app.post("/upload/image", upload.single("image"), (req, res) => {
-    var obj = {
-        name: req.body.name,
-        //desc: req.body.desc,
-        img: {
-            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-            contentType: 'image/png'
-        }
-    }
-    Product.create(obj)
-    const file = req.file
-    // Respond with the file details
-    res.send({
-        message: "Uploaded",
-        id: file.id,
-        name: file.filename,
-        contentType: file.contentType,
-    })
-})
+
+// app.post('/add-product').post(upload.single('image'), (req, res) => {
+//     const name = req.body.name;
+//     //const birthdate = req.body.birthdate;
+//     const img = req.file.filename;
+
+//     const Product = {
+//         name,
+//         img
+//     }
+
+//     //const newUser = new User(Product);
+
+//     Product.save()
+//            .then(() => res.json('User Added'))
+//            .catch(err => res.status(400).json('Error: ' + err));
+// });
+
+
+
+
 
 
 
 // Add Produt Api
-app.post("/add-product", upload.single("image"), async (req, resp) => {
-    var obj = {
-        name: req.body.name,
-        price: req.body.price,
-        category: req.body.category,
-        userid: req.body.userid,
-        company: req.body.company,
-        desc: req.body.desc,
-        img: {
-            data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-            contentType: 'image/png'
+app.post("/add-product", upload.single("img"), (req, resp) => {
+    const file = req.file;
+    if (req.file == undefined) {
+        return resp.send({
+            message: "You must select a file.",
+        });
+    } else {
+        var obj = {
+            name: req.body.name,
+            price: req.body.price,
+            category: req.body.category,
+            userid: req.body.userid,
+            company: req.body.company,
+            desc: req.body.desc,
+            img: {
+                data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+                contentType: 'image/png'
+            }
         }
+        Product.create(obj)
+        console.log(req.file.filename)
+
+        // Respond with the file details
+        resp.send({
+            message: "Uploaded",
+            // id: file.id,
+            // name: file.filename,
+            // contentType: file.contentType,
+        })
     }
-    Product.create(obj)
-    const file = req.file
-    // Respond with the file details
-    resp.send({
-        message: "Uploaded",
-        id: file.id,
-        name: file.filename,
-        contentType: file.contentType,
-    })
 });
 
 

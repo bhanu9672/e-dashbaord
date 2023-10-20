@@ -8,8 +8,10 @@ const ProductLists = () => {
     }, []);
 
     const ProductsList = products.length > 0 && products.map(function (data, index) {
+        if(data.img) {
         const blob = new Blob([Int8Array.from(data.img.data.data)], { type: data.img.contentType });
-        const image = window.URL.createObjectURL(blob);
+        var image = window.URL.createObjectURL(blob);
+        }
         return (
             <ul key={data._id}>
                 <li> {index + 1} </li>
@@ -17,7 +19,8 @@ const ProductLists = () => {
                 <li> {data.price} </li>
                 <li> {data.category} </li>
                 <li> {data.company} </li>
-                <li> <img width="60" height="60" src={image} /> </li>
+                { data.img && <li> <img width="60" height="60" src={image} /> </li> }
+                
                 <li>
                     <button onClick={() => deteleProduct(data._id)}> Delete </button>
                     <Link to={"/update/" + data._id}> update </Link>
