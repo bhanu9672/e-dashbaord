@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
+import { Table, Label, TextInput, Card } from 'flowbite-react';
 
 const ProductLists = () => {
     const [products, setProducts] = useState([]);
@@ -8,32 +9,46 @@ const ProductLists = () => {
     }, []);
 
     const ProductsList = products.length > 0 && products.map(function (data, index) {
-        if(data.img) {
-        const blob = new Blob([Int8Array.from(data.img.data.data)], { type: data.img.contentType });
-        var image = window.URL.createObjectURL(blob);
+        if (data.img) {
+            const blob = new Blob([Int8Array.from(data.img.data.data)], { type: data.img.contentType });
+            var image = window.URL.createObjectURL(blob);
         }
         return (
-            <ul key={data._id}>
-                <li> {index + 1} </li>
-                <li> {data.name} </li>
-                <li> {data.price} </li>
-                <li> {data.category} </li>
-                <li> {data.company} </li>
-                { data.img && <li> <img width="60" height="60" src={image} /> </li> }
-                
-                <li>
-                    <button onClick={() => deteleProduct(data._id)}> Delete </button>
-                    <Link to={"/update/" + data._id}> update </Link>
-                </li>
-            </ul>
+            <>
+                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800" key={data._id}>
+                    <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                        {data.name}
+                    </Table.Cell>
+                    <Table.Cell>
+                        {data.price}
+                    </Table.Cell>
+                    <Table.Cell>
+                        {data.category}
+                    </Table.Cell>
+                    <Table.Cell>
+                        {data.company}
+                    </Table.Cell>
+                    <Table.Cell>
+                        {data.img && <img width="60" height="60" src={image} />}
+                    </Table.Cell>
+                    <Table.Cell>
+                        <button
+                            className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                            onClick={() => deteleProduct(data._id)}
+                        > Delete
+                        </button>
+                        <Link
+                            to={"/update/" + data._id}
+                            className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900"
+                        >
+                            Edit
+                        </Link>
+                    </Table.Cell>
+                </Table.Row>
+            </>
         );
     })
-
     console.log(products)
-
-
-
-
 
     const getProducts = async () => {
         let result = await fetch("http://localhost:5000/products");
@@ -67,27 +82,46 @@ const ProductLists = () => {
     }
 
     return (
-        <div className="products-list">
-            <h3> Product List </h3>
-            <input type="" className="search-product-box" placeholder="Enter Search Product"
-                onChange={searchHandle} />
-            <ul>
-                <li> S.No </li>
-                <li> Name </li>
-                <li> Price </li>
-                <li> Category </li>
-                <li> Company </li>
-                <li> Image </li>
-                <li> Operation </li>
-            </ul>
-            { 
-            products.length > 0 ?
-            ProductsList
-            : <h1 className="no-product-found"> 
-            No Search Product Found. 
-            </h1>
-            }
-        </div>
+        <>
+            <h3 className="text-center text-2xl font-bold font-mono pb-4"> Product List </h3>
+            <TextInput
+                color="gray"
+                className="pb-10 w-1/4 m-auto"
+                placeholder="Enter Search Product"
+                onChange={searchHandle}
+            />
+            <Table striped className="m-auto w-11/12">
+                <Table.Head>
+                    <Table.HeadCell>
+                        Name
+                    </Table.HeadCell>
+                    <Table.HeadCell>
+                        Price
+                    </Table.HeadCell>
+                    <Table.HeadCell>
+                        Category
+                    </Table.HeadCell>
+                    <Table.HeadCell>
+                        Company
+                    </Table.HeadCell>
+                    <Table.HeadCell>
+                        Image
+                    </Table.HeadCell>
+                    <Table.HeadCell>
+                        Operation
+                    </Table.HeadCell>
+                </Table.Head>
+                <Table.Body className="divide-y">
+                    {
+                        products.length > 0 ?
+                            ProductsList
+                            : <h1 className="no-product-found">
+                                No Search Product Found.
+                            </h1>
+                    }
+                </Table.Body>
+            </Table>
+        </>
     )
 }
 
