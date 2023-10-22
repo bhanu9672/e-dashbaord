@@ -37,13 +37,6 @@ app.post("/login", async (req, resp) => {
     }
 });
 
-
-
-
-
-
-
-
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads')
@@ -53,8 +46,6 @@ var storage = multer.diskStorage({
     }
 });
 var upload = multer({ storage: storage });
-
-
 
 // app.post('/add-product').post(upload.single('image'), (req, res) => {
 //     const name = req.body.name;
@@ -73,18 +64,13 @@ var upload = multer({ storage: storage });
 //            .catch(err => res.status(400).json('Error: ' + err));
 // });
 
-
-
-
-
-
-
 // Add Produt Api
-app.post("/add-product", upload.single("img"), (req, resp) => {
-    const file = req.file;
+app.post("/add-product", upload.single("file"), (req, resp) => {
     if (req.file == undefined) {
         return resp.send({
             message: "You must select a file.",
+            reposnse : req.body,
+            image : req.file
         });
     } else {
         var obj = {
@@ -101,18 +87,15 @@ app.post("/add-product", upload.single("img"), (req, resp) => {
         }
         Product.create(obj)
         console.log(req.file.filename)
-
         // Respond with the file details
         resp.send({
             message: "Uploaded",
-            // id: file.id,
-            // name: file.filename,
-            // contentType: file.contentType,
+            id: file.id,
+            name: file.filename,
+            contentType: file.contentType,
         })
     }
 });
-
-
 
 // Add Produt Api
 //app.post("/add-product", async (req, resp) => {
