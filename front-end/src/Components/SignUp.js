@@ -31,7 +31,6 @@ const SignUp = () => {
             return false;
         }
         result = await result.json();
-        //console.warn( "Api Data" + result );
         localStorage.setItem( "user", JSON.stringify( result ) );
         navigate( "/" );
     }
