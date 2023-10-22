@@ -7,8 +7,7 @@ import PrivateComponent from './Components/PrivateComponent';
 import Login from './Components/Login';
 import AddProduct from './Components/AddProduct';
 import ProductLists from "./Components/ProductLists";
-import UpdateProduct from './Components/UpdateProduct';
-import DefaultSidebar from './Components/DefaultSidebar';
+import UpdateProduct from './Components/UpdateProduct';;
 
 function App() {
   return (
