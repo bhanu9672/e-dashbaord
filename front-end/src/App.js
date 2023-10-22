@@ -1,17 +1,18 @@
 import './App.css';
 import Nav from "./Components/Nav";
 import SignUp from './Components/SignUp';
-import Footer from './Components/Footer';
+import FooterSec from './Components/FooterSec';
 import { BrowserRouter, Routes, Route, } from "react-router-dom";
 import PrivateComponent from './Components/PrivateComponent';
 import Login from './Components/Login';
 import AddProduct from './Components/AddProduct';
 import ProductLists from "./Components/ProductLists";
 import UpdateProduct from './Components/UpdateProduct';
+import DefaultSidebar from './Components/DefaultSidebar';
 
 function App() {
   return (
-    <div className="App">
+    <>
       <BrowserRouter>
         <Nav />
         <Routes>
@@ -26,8 +27,8 @@ function App() {
           <Route path='/login' element={<Login />} />
         </Routes>
       </BrowserRouter>
-      <Footer />
-    </div>
+      <FooterSec />
+    </>
   );
 }
 

@@ -1,4 +1,9 @@
-.nav-ul {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* .nav-ul {
   text-align: end;
 }
 
@@ -100,4 +105,4 @@ button.appButton {
 
 .no-product-found {
   color: red;
-}
+} */
