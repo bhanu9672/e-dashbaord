@@ -17,7 +17,7 @@ const ProductLists = () => {
             <>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800" key={data._id}>
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                        {data.name}
+                        <Link to={`/product/${data._id}`}> {data.name} </Link>
                     </Table.Cell>
                     <Table.Cell>
                         {data.price}
@@ -29,7 +29,9 @@ const ProductLists = () => {
                         {data.company}
                     </Table.Cell>
                     <Table.Cell>
-                        {data.img && <img width="60" height="60" src={image} />}
+                        <Link to={`/product/${data._id}`}>
+                            {data.img && <img width="60" height="60" src={image} />}
+                        </Link>
                     </Table.Cell>
                     <Table.Cell>
                         <button

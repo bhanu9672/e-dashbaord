@@ -7,7 +7,11 @@ import PrivateComponent from './Components/PrivateComponent';
 import Login from './Components/Login';
 import AddProduct from './Components/AddProduct';
 import ProductLists from "./Components/ProductLists";
-import UpdateProduct from './Components/UpdateProduct';;
+import UpdateProduct from './Components/UpdateProduct';
+import Store from './Components/Store';
+import SingleProduct from './Components/SingleProduct';
+import Cart from './Components/Cart';
+import Checkout from './Components/Checkout';
 
 function App() {
   return (
@@ -17,10 +21,13 @@ function App() {
         <Routes>
           <Route element={<PrivateComponent />} >
             <Route path='/' element={<ProductLists />} />
+            <Route path='/store' element={ <Store /> } />
             <Route path='/add' element={<AddProduct />} />
+            <Route path='/product/:id' element={<SingleProduct />} />
             <Route path='/update/:id' element={<UpdateProduct />} />
-            <Route path='/LogOut' element={<h1> LogOur Component </h1>} />
-            <Route path='/Profile' element={<h1> Profile Component </h1>} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/checkout' element={<Checkout />} />
+            <Route path='/profile' element={<h1> Profile Component </h1>} />
           </Route>
           <Route path='/signup' element={<SignUp />} />
           <Route path='/login' element={<Login />} />

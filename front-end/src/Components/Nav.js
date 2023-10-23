@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../logo.png"
-import { Navbar,Button } from 'flowbite-react';
+import { Navbar, Button } from 'flowbite-react';
 
 const Nav = () => {
     const auth = localStorage.getItem('user');
@@ -12,7 +12,7 @@ const Nav = () => {
     }
     return (
         <>
-            <Navbar className='mb-10' fluid rounded>
+            <Navbar className='mb-10 bg-gray-50 text-gray-600' fluid rounded>
                 <Link to="/">
                     <img className="w-10" src={Logo} />
                 </Link>
@@ -24,10 +24,15 @@ const Nav = () => {
                     {
                         auth ?
                             <>
+                                <Link to="/store"> Store </Link>
                                 <Link to="/" active> Products </Link>
                                 <Link to="/add"> Add Products </Link>
-                                <Link to="/Profile"> Profile </Link>
-                                <Link to="/login" onClick={LogOut}> LogOut ( {JSON.parse(auth).name} ) </Link>
+                                <Link to="/profile"> Profile </Link>
+                                <Link to="/cart"> Cart </Link>
+                                <Link to="/checkout"> Checkout </Link>
+                                <Link to="/login" onClick={LogOut}>
+                                    LogOut ( {JSON.parse(auth).name} )
+                                </Link>
                             </>
                             :
                             <>
