@@ -27,12 +27,9 @@ const Nav = () => {
                                 <Link to="/store"> Store </Link>
                                 <Link to="/" active> Products </Link>
                                 <Link to="/add"> Add Products </Link>
-                                <Link to="/profile"> Profile </Link>
                                 <Link to="/cart"> Cart </Link>
                                 <Link to="/checkout"> Checkout </Link>
-                                <Link to="/login" onClick={LogOut}>
-                                    LogOut ( {JSON.parse(auth).name} )
-                                </Link>
+                                <Link to="/profile"> Profile </Link>
                             </>
                             :
                             <>

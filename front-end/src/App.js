@@ -12,6 +12,7 @@ import Store from './Components/Store';
 import SingleProduct from './Components/SingleProduct';
 import Cart from './Components/Cart';
 import Checkout from './Components/Checkout';
+import Profile from './Components/Profile';
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
             <Route path='/update/:id' element={<UpdateProduct />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/checkout' element={<Checkout />} />
-            <Route path='/profile' element={<h1> Profile Component </h1>} />
+            <Route path='/profile' element={<Profile/>} />
           </Route>
           <Route path='/signup' element={<SignUp />} />
           <Route path='/login' element={<Login />} />
